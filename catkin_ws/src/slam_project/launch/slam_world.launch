@@ -2,7 +2,7 @@
 <!--spawn a robot in gazebo world-->
 
 <launch>
-  <include file="$(find udacity_bot)/launch/robot_description.launch"/>
+  <include file="$(find slam_project)/launch/robot_description.launch"/>
   <arg name="world" default="empty"/> 
   <arg name="paused" default="false"/>
   <arg name="use_sim_time" default="true"/>
@@ -11,7 +11,7 @@
   <arg name="debug" default="false"/>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find udacity_bot)/worlds/jackal_race.world"/>
+    <arg name="world_name" value="$(find slam_project)/worlds/kitchen_dining.world"/>
     <arg name="paused" value="$(arg paused)"/>
     <arg name="use_sim_time" value="$(arg use_sim_time)"/>
     <arg name="gui" value="$(arg gui)"/>
@@ -23,6 +23,6 @@
 output="screen" args="-urdf -param robot_description -model udacity_bot"/>
 
   <!--launch rviz-->
-  <node name="rviz" pkg="rviz" type="rviz" respawn="false"/>
+  <!--<node name="rviz" pkg="rviz" type="rviz" respawn="false"/>-->
 
 </launch>
