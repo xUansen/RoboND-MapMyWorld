@@ -1,6 +1,6 @@
 set(_CATKIN_CURRENT_PACKAGE "slam_project")
 set(slam_project_VERSION "0.0.0")
-set(slam_project_MAINTAINER "nvidia <nvidia@todo.todo>")
+set(slam_project_MAINTAINER "beshari <beshari@todo.todo>")
 set(slam_project_PACKAGE_FORMAT "2")
 set(slam_project_BUILD_DEPENDS )
 set(slam_project_BUILD_EXPORT_DEPENDS )

@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 
-<robot name="my_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
-<xacro:include filename="$(find slam_project)/urdf/my_bot.gazebo" />
+<robot name="udacity_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<xacro:include filename="$(find slam_project)/urdf/udacity_bot.gazebo" />
 
   <link name="robot_footprint"></link>
 
@@ -108,8 +108,8 @@
         <cylinder length="0.025" radius="0.06"/>
       </geometry>
     </collision>
+  </link>
 
- </link>
   <link name="left_wheel">
     <visual>
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
@@ -126,7 +126,7 @@
           izz="0.1"
       />
     </inertial>
-	<collision>
+    <collision>
       <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>
        <geometry>
         <cylinder length="0.025" radius="0.06"/>
@@ -134,7 +134,7 @@
     </collision>
   </link>
  
-<joint type="continuous" name="left_wheel_hinge">
+  <joint type="continuous" name="left_wheel_hinge">
     <origin xyz="0 0.226 0" rpy="0 0 0"/>
     <child link="left_wheel"/>
     <parent link="chassis"/>
@@ -142,7 +142,7 @@
     <limit effort="10000" velocity="1000"/>
     <joint_properties damping="1.0" friction="1.0"/>
   </joint>
-<joint type="continuous" name="right_wheel_hinge">
+  <joint type="continuous" name="right_wheel_hinge">
     <origin xyz="0 -0.226 0" rpy="0 0 0"/>
     <child link="right_wheel"/>
     <parent link="chassis"/>
@@ -152,7 +152,7 @@
   </joint>
 
 
-<link name="camera_link">
+  <link name="camera_link">
      <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
        <geometry>
@@ -176,8 +176,7 @@
         <box size=".05 .05 .05"/>
       </geometry>
     </collision>
-
-</link>
+  </link>
 
   <joint name="camera_joint" type="fixed">
     <origin xyz="0.1 0 0.1" rpy="0 0 0" />
@@ -185,14 +184,13 @@
     <child link="camera_link"/>
   </joint>
 
-<link name="camera_rgbd_frame">
+  <link name="camera_rgbd_frame">
      <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
        <geometry>
         <box size=".05 .05 .05"/>
       </geometry>
     </visual>
-
     <inertial>
       <mass value="0.1"/>
       <origin xyz="0 0 0" rpy=" 0 0 0"/>
@@ -202,30 +200,28 @@
           izz="0.000001"
       />
     </inertial>
-
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
        <geometry>
         <box size=".05 .05 .05"/>
       </geometry>
     </collision>
-
-</link>
+  </link>
+  
   <joint name="rgbd_joint" type="fixed">
-    <origin xyz="0.1 0 0.1" rpy="-1.5707 0  -1.5707" />
-    <parent link="chassis"/>
+    <origin xyz="0 0 -0.05" rpy="-1.5707 0  -1.5707" />
+    <parent link="camera_link"/>
     <child link="camera_rgbd_frame"/>
   </joint>
 
 
-<link name="hokuyo">
+  <link name="hokuyo">
      <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
        <geometry>
 	<mesh filename="package://slam_project/meshes/hokuyo.dae"/>
       </geometry>
     </visual>
-
     <inertial>
       <mass value="0.1"/>
       <origin xyz="0 0 0" rpy=" 0 0 0"/>
@@ -235,20 +231,18 @@
           izz="0.000001"
       />
     </inertial>
-
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
        <geometry>
         <box size=".05 .05 .05"/>
       </geometry>
     </collision>
-
-</link>
+  </link>
 
   <joint name="hokuyo_joint" type="fixed">
     <origin xyz=".1 0 .16 " rpy="0 0 0" />
     <parent link="chassis"/>
     <child link="hokuyo"/>
-</joint>
+  </joint>
 </robot>
 
